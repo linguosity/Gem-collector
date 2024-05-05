@@ -1,7 +1,7 @@
 @import "https://cdn.jsdelivr.net/npm/bulma@1.0.0/css/bulma.min.css";
 
 .medium-size {
-    max-width: 400px;
+    max-width: 220px;
 }
 
 .main-display {
@@ -9,4 +9,5 @@
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-around;
+    align-items: flex-end;
 }

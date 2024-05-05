@@ -1,0 +1,27 @@
+{% extends 'gems/base.html' %}
+{% block content %}
+    {% for gem in gem_list %}
+        <a href="{% url 'detail' gem.id %}" >
+            <div class="card medium-size is-fluid">
+                <header class="card-header">
+                    <p class="card-header-title">{{ gem.name }}</p>
+                    <button class="card-header-icon" aria-label="more options">
+                    <span class="icon">
+                        <i class="fas fa-angle-down" aria-hidden="true"></i>
+                    </span>
+                    </button>
+                </header>
+                <div class="card-image">
+                <figure class="image is-256x256">
+                    <img 
+                    class=""
+                    src="{{ gem.url }}""
+                    alt="Placeholder image"
+                    />
+                </figure>
+                </div>
+            </div>
+        </a>
+    {% endfor %}
+
+{% endblock %}
