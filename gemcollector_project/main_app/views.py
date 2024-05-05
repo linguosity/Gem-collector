@@ -2,6 +2,7 @@ from django.shortcuts import render
 #from django.http import HttpResponse
 from .models import Gem
 from django.views.generic import ListView,CreateView,DeleteView,UpdateView
+from .forms import GemForm
 
 # Create your views here.
 def home(request):
@@ -18,12 +19,12 @@ class GemList(ListView):
     model = Gem
 
 class GemCreate(CreateView):
+    form_class = GemForm
     model = Gem
-    fields = ['name', 'description']
 
 class GemUpdate(UpdateView):
+    form_class = GemForm
     model = Gem
-    fields = ['name', 'description']
 
 class GemDelete(DeleteView):
     model = Gem
