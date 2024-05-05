@@ -17,4 +17,34 @@ class Gem(models.Model):
 
     def get_absolute_url(self):
         return reverse('detail', kwargs={'gem_id': self.id})
+    
+# choices for type of jewelry
+JEWELRY = (
+    ('W', 'Watch'),
+    ('E', 'Earrings'),
+    ('R', 'Ring'),
+    ('B', 'Bracelet'),
+    ('N', 'Necklace')
+)
 
+class Jewelry(models.Model):
+    name = models.CharField(max_length=100)
+    price = models.DecimalField(max_digits=6, decimal_places=2)
+    url = models.CharField(max_length=100)
+    description = models.TextField(max_length=250)
+    type = models.CharField(
+        max_length=1,
+        choices=JEWELRY,
+        default=JEWELRY[0][0]
+    )
+
+    gem = models.ForeignKey(Gem, on_delete=models.CASCADE)
+
+    def __str__(self):
+        #to make more readable
+        return f"{self.get_type_display()}"
+    
+    class Meta:
+        ordering = ['-price']
+
+    
