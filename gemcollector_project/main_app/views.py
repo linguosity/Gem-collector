@@ -13,9 +13,11 @@ def about(request):
 
 def gems_detail(request, gem_id):
     gem = Gem.objects.get(id=gem_id)
-    jewels = Jewelry
+    #jewels = Jewelry
 
-    id_list = gem.jewels.all().values_list('id')
+    id_list = gem.jewelry.all().values_list('id')
+    jewels = gem.jewelry.all()
+    
     return render(request, 'gems/detail.html', {
          'gem': gem,
          'jewels': jewels
