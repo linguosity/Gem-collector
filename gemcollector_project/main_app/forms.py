@@ -11,6 +11,7 @@ class GemForm(forms.ModelForm):
             'price': forms.NumberInput(attrs={'class':'input'}),
             'description': forms.Textarea(attrs={'class':'textarea'}),
             'weight': forms.NumberInput(attrs={'class':'input'}),
+            'geotag_location': forms.TextInput(attrs={'class':'input'}),
             'url': forms.TextInput(attrs={'class': 'input'}),
         }
 

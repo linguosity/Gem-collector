@@ -1,6 +1,6 @@
 from django.shortcuts import render
 #from django.http import HttpResponse
-from .models import Gem
+from .models import Gem, Jewelry
 from django.views.generic import ListView,CreateView,DeleteView,UpdateView
 from .forms import GemForm
 
@@ -13,7 +13,13 @@ def about(request):
 
 def gems_detail(request, gem_id):
     gem = Gem.objects.get(id=gem_id)
-    return render(request, 'gems/detail.html', { 'gem': gem})
+    jewels = Jewelry
+
+    id_list = gem.jewels.all().values_list('id')
+    return render(request, 'gems/detail.html', {
+         'gem': gem,
+         'jewels': jewels
+    })
 
 class GemList(ListView):
     model = Gem

@@ -1,8 +1,7 @@
 {% extends 'gems/base.html' %}
 {% block content %}
-<h1> {{gem.name}} </h1>
 
-    <div class="card">
+    <div class="card" style="max-width: 500px; margin-top: 32px">
         <header class="card-header">
             <p class="card-header-title">{{ gem.name }}</p>
             <button class="card-header-icon" aria-label="more options">
@@ -12,7 +11,7 @@
             </button>
         </header>
         <div class="card-image">
-            <figure class="image is-128x128">
+            <figure class="image">
                 <img 
                 class="is-rounded"
                 src="{{ gem.url }}""
@@ -26,6 +25,15 @@
                 <br />
             </div>
         </div>
+        <ul>
+                {% if jewels.count %}
+            {% for jewel in jewels.all %}
+        
+             <li>{{ jewel.name }}</li>
+
+            {% endfor %}
+            {% else %}
+        </ul>
         <footer class="card-footer">
             <a href="{% url 'gems_update' gem.id%}" class="card-footer-item">Edit</a>
             <a href="{% url 'gems_delete' gem.id%}" class="card-footer-item">Delete</a>

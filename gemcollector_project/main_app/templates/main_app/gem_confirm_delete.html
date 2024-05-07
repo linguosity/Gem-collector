@@ -5,8 +5,8 @@
 
 <form action="" method="POST">
     {%csrf_token%}
-    <input type="submit" value="Submit" class="btn"/>
-    <a href="{% url 'detail' gem.id %}">Cancel</a>
+    <input type="submit" value="Delete" class="button is-danger"/>
+    <a href="{% url 'detail' gem.id %}" class="button">Cancel</a>
 </form>
 
 {% endblock %}

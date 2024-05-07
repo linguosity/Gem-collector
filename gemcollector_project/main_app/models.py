@@ -3,6 +3,8 @@ from django.urls import reverse
 
 # Create your models here.
 
+# choices for type of jewelry
+
 class Gem(models.Model):
     name = models.CharField(max_length=100)
     scientific_name = models.CharField(max_length=100)
@@ -11,14 +13,14 @@ class Gem(models.Model):
     weight = models.IntegerField(default=0)
     geotag_location = models.CharField(max_length=100)
     url = models.CharField(max_length=100)
+    # error resolved with ChatGPT to reference 'gems' model using forward declaration
 
     def __str__(self):
         return self.name
 
     def get_absolute_url(self):
         return reverse('detail', kwargs={'gem_id': self.id})
-    
-# choices for type of jewelry
+  
 JEWELRY = (
     ('W', 'Watch'),
     ('E', 'Earrings'),
@@ -38,13 +40,12 @@ class Jewelry(models.Model):
         default=JEWELRY[0][0]
     )
 
-    gem = models.ForeignKey(Gem, on_delete=models.CASCADE)
+    gem = models.ForeignKey(Gem, on_delete=models.CASCADE, related_name='jewelry')
 
     def __str__(self):
-        #to make more readable
-        return f"{self.get_type_display()}"
+        return self.name
     
-    class Meta:
-        ordering = ['-price']
+    def get_absolute_url(self):
+        return reverse('jewels_detail', kwargs={'pk': self.id})
 
     

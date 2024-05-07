@@ -2,11 +2,16 @@
 {% block content %}
 
 {% if object %}
+
     <div class="field">
-        <h1>Edit <span class="">{{object.name}}</span></h1>
+
+        <div class="card" style="max-width: 500px; margin-top: 32px">
+            <header class="card-header">
+        <h1 class="card-header-title">Edit <span class="">{{object.name}}</span></h1>
 {%else%}
-        <h1>Add gem</h1>
+        <h1 class="card-header-title">Add gem</h1>
 {% endif %}
+        </header>
         <form action="" method="POST">
             {%csrf_token%}
             <table class="table">
@@ -14,5 +19,7 @@
             </table>
             <input type="submit" value="Submit" class="button is-link is-light"/>
         </form>
+
+        </div>
     </div>
 {% endblock %}
