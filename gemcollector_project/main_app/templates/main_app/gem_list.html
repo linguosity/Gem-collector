@@ -1,14 +1,16 @@
 {% extends 'gems/base.html' %}
 {% block content %}
+<div class="grid">
     {% for gem in gem_list %}
+    <div class="cell">
         <a href="{% url 'detail' gem.id %}" >
             <div class="card medium-size is-fluid">
                 <header class="card-header">
                     <p class="card-header-title">{{ gem.name }}</p>
                     <button class="card-header-icon" aria-label="more options">
-                    <span class="icon">
-                        <i class="fas fa-angle-down" aria-hidden="true"></i>
-                    </span>
+                        <span class="icon">
+                            <i class="fas fa-angle-down" aria-hidden="true"></i>
+                        </span>
                     </button>
                 </header>
                 <div class="card-image">
@@ -22,6 +24,7 @@
                 </div>
             </div>
         </a>
+    </div>
     {% endfor %}
-
+</div>
 {% endblock %}

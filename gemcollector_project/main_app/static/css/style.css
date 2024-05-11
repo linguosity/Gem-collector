@@ -4,11 +4,11 @@
     max-width: 220px;
 }
 
-.main-display {
+/*.main-display { 
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-around;
     align-items: flex-end;
-}
+}*/
 

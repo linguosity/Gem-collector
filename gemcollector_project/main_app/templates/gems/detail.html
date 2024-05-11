@@ -1,44 +1,54 @@
 {% extends 'gems/base.html' %}
 {% block content %}
-
-    <div class="card" style="max-width: 500px; margin-top: 32px">
-        <header class="card-header">
-            <p class="card-header-title">{{ gem.name }}</p>
-            <button class="card-header-icon" aria-label="more options">
-            <span class="icon">
-                <i class="fas fa-angle-down" aria-hidden="true"></i>
-            </span>
-            </button>
-        </header>
-        <div class="card-image">
-            <figure class="image">
-                <img 
-                class="is-rounded"
-                src="{{ gem.url }}""
-                alt="Placeholder image"
-                />
-            </figure>
-        </div>
-        <div class="card-content">
-            <div class="content">
-                {{ gem.description }}
-                <br />
+    <div class="grid">
+        <div class="cell">
+            <div class="card" style="max-width: 500px; margin-top: 32px">
+                <header class="card-header">
+                    <p class="card-header-title">{{ gem.name }}</p>
+                    <button class="card-header-icon" aria-label="more options">
+                    <span class="icon">
+                        <i class="fas fa-angle-down" aria-hidden="true"></i>
+                    </span>
+                    </button>
+                </header>
+                <div class="card-image">
+                    <figure class="image">
+                        <img 
+                        class="is-rounded"
+                        src="{{ gem.url }}""
+                        alt="Placeholder image"
+                        />
+                    </figure>
+                </div>
+                <div class="card-content">
+                    <div class="content">
+                        {{ gem.description }}
+                        <br />
+                    </div>
+                </div>
+                
+                <footer class="card-footer">
+                    <a href="{% url 'gems_update' gem.id%}" class="card-footer-item">Edit</a>
+                    <a href="{% url 'gems_delete' gem.id%}" class="card-footer-item">Delete</a>
+                </footer>
             </div>
         </div>
-        <ul>
-                {% if jewels.count %}
-            {% for jewel in jewels.all %}
-        
-             <li>{{ jewel.name }}</li>
+        <div class="cell">
+            <ul>
+            {% if jewels.count %}
+                {% for jewel in jewels.all %}
+            
+                <li>The jewel's name is: {{ jewel.name }} and {{ jewel.description }}</li>
+                <li><img src="{{jewel.url}}"/></li>
 
-            {% endfor %}
-            {% else %}
-        </ul>
-        <footer class="card-footer">
-            <a href="{% url 'gems_update' gem.id%}" class="card-footer-item">Edit</a>
-            <a href="{% url 'gems_delete' gem.id%}" class="card-footer-item">Delete</a>
-          </footer>
+                {% endfor %}
+                {% else %}
+                <><>
+                {% endif %}
+         </ul>
     </div>
-{% endif %}
+        
+ </div>
+            
 
 {% endblock %}
