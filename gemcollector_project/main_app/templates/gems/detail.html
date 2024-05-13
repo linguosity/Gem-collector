@@ -45,7 +45,7 @@
 
                         {% endfor %}
                         {% else %}
-                        <><>
+                        <span></span>
                         {% endif %}
                     </ul>
                 </div>
@@ -61,6 +61,55 @@
                 </form>
             </div>
         </div>
+    </div>
+
+    <!-- Toys -->
+    <div class="card medium-size">
+        <h3>{{ gem.name }}'s Toys</h3>
+        {% if gem.toys.count %}
+          {% for toy in gem.toys.all %}
+            <div class="card">
+              <div class="card-content">
+                <span class="card-title">
+                  A <span style="color: {{ toy.color }}">{{ toy.color }}</span> {{ toy.name }}
+                </span>
+              </div>
+              <div class="card-action">
+                <form action="{% url 'assoc_delete' gem.id toy.id %}" method="POST">
+                    {% csrf_token %}
+                    <button type="submit" class="btn red">Remove</button>
+                </form>
+              </div>        
+            </div>
+          {% endfor %}
+        {% else %}
+          <h5>No Toys 😿</h5>
+        {% endif %}
+      </div>
+      <!-- Available toys will come after this line -->
+        
+            
+                <h3>Available Toys</h3>
+                {% if toys.count %}
+                {% for toy in toys.all %}
+                    <div class="card medium-size">
+                    <div class="card-content">
+                        <span class="card-title">
+                        A <span style="color: {{ toy.color }}">{{ toy.color }}</span> {{ toy.name }}
+                        </span>
+                    </div>
+                    <div class="card-action">
+                        <form action="{% url 'assoc_toy' gem.id toy.id %}" method="POST">
+                        {% csrf_token %}
+                        <button type="submit" class="btn">Add</button>
+                        </form>
+                    </div>
+                    </div>
+                {% endfor %}
+                {% else %}
+                <h5>{{gem.name}} Already Has All Toys Available</h5>
+                {% endif %}
+           
     </div>
             
 

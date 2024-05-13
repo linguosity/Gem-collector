@@ -5,6 +5,17 @@ from django.urls import reverse
 
 # choices for type of jewelry
 
+
+class Toy(models.Model):
+    name = models.CharField(max_length=50)
+    color = models.CharField(max_length=20)
+
+    def __str__(self):
+        return self.name
+
+    def get_absolute_url(self):
+        return reverse('toys_detail', kwargs={'pk': self.id})
+
 class Gem(models.Model):
     name = models.CharField(max_length=100)
     scientific_name = models.CharField(max_length=100)
@@ -14,6 +25,8 @@ class Gem(models.Model):
     geotag_location = models.CharField(max_length=100)
     url = models.CharField(max_length=100)
     # error resolved with ChatGPT to reference 'gems' model using forward declaration
+
+    toys = models.ManyToManyField(Toy)
 
     def __str__(self):
         return self.name

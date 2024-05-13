@@ -1,0 +1,19 @@
+{% extends 'gems/base.html' %}
+{% block content %}
+
+  {% for toy in toy_list %}
+    
+      <div class="card medium-size">
+        <div class="card-header"><h1>{{ toy.name }}</h1></div>
+          <div class="card-content">
+            
+              <a href="{% url 'toys_detail' toy.id %}">
+              <p>Color: {{ toy.color }}</p>
+          </div>
+      </div>
+    </a>
+  {% endfor %}
+</div>
+
+
+{% endblock %}
