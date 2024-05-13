@@ -34,21 +34,34 @@
             </div>
         </div>
         <div class="cell">
-            <ul>
-            {% if jewels.count %}
-                {% for jewel in jewels.all %}
-            
-                <li>The jewel's name is: {{ jewel.name }} and {{ jewel.description }}</li>
-                <li><img src="{{jewel.url}}"/></li>
+            <div class="card">
+                <div class="card-content">
+                    <ul>
+                    {% if jewels.count %}
+                        {% for jewel in jewels.all %}
+                    
+                        <li>The jewel's name is: {{ jewel.name }} and {{ jewel.description }}</li>
+                        <li><img src="{{jewel.url}}" width="200px"/></li>
 
-                {% endfor %}
-                {% else %}
-                <><>
-                {% endif %}
-         </ul>
+                        {% endfor %}
+                        {% else %}
+                        <><>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div>
+             <!-- Form to add jewelry -->
+            <div class="field">
+                <form action="{% url 'add_jewelry' gem.id %}" method="POST">
+                    {% csrf_token %}
+                    {{ jewelry_form.as_p }}
+                    <input type="submit" class="button" value="add jewelry">
+                </form>
+            </div>
+        </div>
     </div>
-        
- </div>
             
 
 {% endblock %}
